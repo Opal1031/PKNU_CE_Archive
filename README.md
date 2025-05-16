@@ -10,3 +10,5 @@ PKNU Computer &amp; AI Engineering
 
 ### 03. 웹프로그래밍 - HTML/CSS/JS
 - 명품 HTML5 + CSS3 + Javascript 웹 프로그래밍 (황기태 / 생능, 2017)
+
+### 04. 이산수학 - Python
