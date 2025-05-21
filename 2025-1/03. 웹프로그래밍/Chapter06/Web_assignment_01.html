@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script>
+            function printStar(n) {
+                let m = parseInt(n);
+
+                if(isNaN(m) || m <= 0) {
+                    alert("입력 오류입니다.");
+                    return;
+                }
+
+                for(let i=1; i <= m; i++) {
+                    document.write("*".repeat(i) + "<br>");
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <h3>별 문자 출력하기</h3>
+
+        <hr>
+
+        <script>
+            let n = prompt("정수를 입력하세요.", "");
+            printStar(n);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+    <script>
+            function findChecked() {
+                let found = null;
+                let kfruit = document.getElementsByName("fruit");
+
+                for (let i = 0; i < kfruit.length; i++) {
+                    if (kfruit[i].checked) {
+                        found = kfruit[i].value;
+                        break;
+                    }
+                }
+
+                drawImage(found);
+            }
+
+            function drawImage(fruit) {
+                const image = document.getElementById("fruitImage");
+
+                if (fruit === "banana")
+                    image.src = "media/banana.png";
+                else if (fruit === "mango")
+                    image.src = "media/mango.png";
+                else if (fruit === "apple")
+                    image.src = "media/apple.png";
+
+                image.style.display = "block";
+            }
+        </script>
+    </head>
+
+    <body>
+        <h3>라디오 버튼을 클릭하면 이미지를 출력합니다.</h3>
+        <hr>
+
+        <form>
+            <input type="radio" name="fruit" value="banana" onclick="findChecked()">바나나
+            <input type="radio" name="fruit" value="mango" onclick="findChecked()">망고
+            <input type="radio" name="fruit" value="apple" onclick="findChecked()">사과
+        </form>
+
+        <br>
+
+        <img id="fruitImage" style="display:none; width:200px;" alt="선택한 과일 이미지">
+    </body>
+</html>

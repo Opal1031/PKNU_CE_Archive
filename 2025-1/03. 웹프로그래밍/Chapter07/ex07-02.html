@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>[]로 배열 만들기</title>
+    </head>
+
+    <body>
+        <h3>[]로 배열 만들기</h3>
+
+        <hr>
+
+        <script>
+            let plots = [20, 5, 8, 15, 20];
+            document.write("var plots = [20, 5, 8, 15, 20]<br>");
+
+            for (let i = 0; i < 5; i++) {
+                let size = plots[i];
+
+                while (size > 0) {
+                    document.write("*");
+                    size--;
+                }
+
+                document.write(plots[i] + "<br>");
+            }
+        </script>
+    </body>
+</html>

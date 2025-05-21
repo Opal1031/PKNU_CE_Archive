@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>자바스크립트 위치 확인하기</title>
+
+        <link rel = "stylesheet" href = "style01.css">
+
+        <script>
+            // HTML 내부 자바스크립트
+            document.write("내부 자바 스크립트로 작성한 것<hr>");
+        </script>
+
+        <script src = "script01.js">
+            // 외부 자바스크립트 파일, script.1.js
+        </script>
+    </head>
+
+    <body>
+        <!-- 태그 안의 자바스크립트 -->
+        <a href = "#" onclick = "document.write('onclick  태그의 자바스크립트')">
+            눌러보세요!</a>
+
+        <hr>
+
+        <a href = "javascript:alert('href 태그의 자바스크립트')">
+            안누르실거에요?</a>
+    </body>
+</html>

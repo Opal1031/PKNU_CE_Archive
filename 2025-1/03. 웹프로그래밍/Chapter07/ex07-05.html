@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Date 객체로 현재 시간 알아내기</title>
+    </head>
+
+    <body>
+        <h3>Date 객체로 현재 시간 알아내기</h3>
+
+        <hr>
+
+        <script>
+            let now = new Date();
+            
+            document.write("현재 시간 : " + now.toUTCString() + "<br><hr>");
+
+            document.write(now.getFullYear() + "년도<br>");
+            document.write(now.getMonth() + 1 + "월<br>");
+            document.write(now.getDate() + "일<br>");
+            document.write(now.getHours() + "시<br>");
+            document.write(now.getMinutes() + "분<br>");
+            document.write(now.getSeconds() + "초<br>");
+            document.write(now.getMilliseconds() + "밀리초<br><hr>");
+
+            let next = new Date(2023, 7, 15, 12, 12, 12);
+
+            document.write("next.toLocaleString() : " + next.toLocaleString() + "<br>");
+        </script>
+    </body>
+</html>
