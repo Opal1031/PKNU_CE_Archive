@@ -1,0 +1,67 @@
+/* 메인 스타일 */
+html, body {
+    height : 100%;
+    margin : 0;
+    padding : 0;
+    display : flex;
+    flex-direction : column;
+}
+
+main {
+    flex : 1;
+    padding : 30px 20px;
+    max-width : 960px;
+    margin : auto;
+    background : #ffffff;
+    width : 100%;
+    box-sizing : border-box;
+}
+
+header {
+    background-color : #d32f2f;
+    color : #ffffff;
+    height : 100px;
+    padding : 1px 25px 20px 25px;
+}
+
+.header-content {
+    display : flex;
+    align-items : center;
+    gap : 15px;
+}
+
+.header-content h1 {
+    font-size : 45px;
+}
+
+.logo {
+    height : 100px;
+    width : auto;
+}
+
+
+footer {
+    background-color : #333333;
+    color : #ffffff;
+    text-align : center;
+    padding : 10px 0;
+    font-size : 14px;
+}
+
+
+/* 메뉴 바 스타일 */
+nav {
+    background-color : #333333;
+    display : flex;
+    justify-content : center;
+}
+
+nav a {
+    color : white;
+    padding : 14px 20px;
+    text-decoration : none;
+}
+
+nav a:hover {
+    background-color : #444444;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>자바스크립트로 비디오 제어</title>
+    </head>
+
+    <body>
+        <h3>자바스크립트로 비디오 제어</h3>
+
+        <hr>
+
+        <video id = "video" width = "300" height = "200" src = "media/bear.mp4" type = "video/mp4">
+        </video>
+        
+        <div id = "msg">이곳에 비디오 제어 메시지 출력</div>
+        
+        <button type="button" id="play" onclick="control(event)">play</button>
+        <button type="button" id="pause" onclick="control(event)">pause</button>
+        <button type="button" id="replay" onclick="control(event)">replay</button>
+        <button type="button" id="vol-" onclick="control(event)">vol-</button>
+        <button type="button" id="vol+" onclick="control(event)">vol+</button>
+        <button type="button" id="mute on/off" onclick="control(event)">mute on/off</button>
+
+        <script>
+            let div = document.getElementById("msg");
+            let video = document.getElementById("video");
+
+            function control(e) {
+                let id = e.target.id;
+
+                if (id == "play") {
+                    video.play();
+                    div.innerHTML = video.src + "재생중입니다.";
+                }
+
+                else if (id == "pause") {
+                    video.pause();
+                    div.innerHTML = "일시중지되었습니다.";
+                }
+
+                else if (id == "replay") {
+                    video.load();
+                    video.play();
+                    div.innerHTML = video.src + "를 처음부터 재생합니다.";
+                }
+
+                else if(id == "vol-") {
+                    video.volume -= 0.1
+                    if(video.volume < 0.1) video.volume = 0;
+                    div.innerHTML = "음량 0.1 감소." + "현재 " + video.volume;
+                }
+
+                else if(id == "vol+") {
+                    video.volume += 0.1;
+                    if(video.volume > 0.9) video.volume = 1.0;
+                    div.innerHTML = "음량 0.1 증가." + "현재 " + video.volume;
+                }
+
+                else if(id == "mute on/off") {
+                    video.muted = !video.muted;
+                    if(video.muted) div.innerHTML = "음소거";
+                    else div.innerHTML = "음소거 해제";
+                }
+            }
+        </script>
+    </body>
+</html>

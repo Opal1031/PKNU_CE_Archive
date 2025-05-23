@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>watchPosition()으로 반복 위치 서비스</title>
+    </head>
+
+    <body>
+        <h3>watchPosition()으로 반복 위치 서비스</h3>
+        
+        <hr>
+
+        <div id="msg">이곳에 위치 정보 출력</div>
+        <iframe id="map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ></iframe>
+        
+        <br>
+
+        <script>
+            let options = {
+                enableHighAccuracy: false,
+                timeout: 5000,
+                maximumAge: 0 };
+                
+            let count=0;
+            let watchID;
+
+            if(navigator.geolocation) {
+                watchID = navigator.geolocation.watchPosition(changed, null, options);
+            }
+            else { alert("지원하지 않음"); }
+
+            function changed(position) {
+                if(count == 5) {
+                    navigator.geolocation.clearWatch(watchID);
+                    document.getElementById("msg").innerHTML = "위치 서비스 종료";
+                    return;}
+                    
+                let lat = position.coords.latitude;
+                let lon = position.coords.longitude
+                let text = count + ": (위도 " + lat + "°, 경도 " + lon + "°)로 변경됨<br>";
+
+                document.getElementById("msg").innerHTML = text;
+
+                let map = document.getElementById("map");
+
+                map.src ="https://www.openstreetmap.org/export/embed.html?bbox=" +
+                (parseFloat(lon)-0.01) + "%2C" + (parseFloat(lat)-0.01) + "%2C" +
+                (parseFloat(lon)+0.01) + "%2C" + (parseFloat(lat) + 0.01);
+
+                count++;
+            }
+        </script>
+    </body>
+</html>

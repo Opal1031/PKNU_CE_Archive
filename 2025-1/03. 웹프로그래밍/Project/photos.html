@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>활동 사진 - SMASHING</title>
+
+        <link href = "images/smashing.jpg" rel = "shortcut icon" type = "image/x-icon">
+        <link rel = "stylesheet" href = "css\style.css">
+        <link rel = "stylesheet" href = "css\gallery.css">
+        <link rel = "stylesheet" href = "css\modal.css">
+    </head>
+
+    <body>
+        <header>
+            <div class = "header-content">
+                <img src = "images/Logo.jpg" alt = "로고" class = "logo">
+                <h1>S M A S H I N G</h1>
+                <br>
+                부경대학교 운동1분과 탁구동아리
+            </div>
+        </header>
+
+        <nav>
+            <a href = "index.html">홈</a>
+            <a href = "intro.html">소개</a>
+            <a href = "photos.html">활동 사진</a>
+            <a href = "join.html">가입 안내</a>
+            <a href = "notices.html">공지사항</a>
+            <a href = "conven.html">편의 기능</a>
+        </nav>
+
+        <main>
+            <section>
+                <h2 style = "text-align:center;">갤러리</h2>
+
+                <script src = "js/gallery.js"></script>
+
+                
+                <div class="gallery">
+                    <div class = "gallery-item">
+                        <img src = "images/Dragon_Valley_01.jpg" alt = "용당 캠퍼스 01">
+                        <div class = "caption">용당 캠퍼스 01</div>
+                    </div>
+                    <div class = "gallery-item">
+                        <img src = "images/Dragon_Valley_02.jpg" alt = "용당 캠퍼스 02">
+                        <div class = "caption">용당 캠퍼스 02</div>
+                    </div>
+                    <div class = "gallery-item">
+                        <img src = "images/Dragon_Valley_03.jpg" alt = "용당 캠퍼스 03">
+                        <div class = "caption">용당 캠퍼스 03</div>
+                    </div>                        
+                    <div class = "gallery-item">
+                        <img src = "images/BTTA.jpg" alt = "생활 체육 탁구 대회">
+                        <div class = "caption">생활 체육 탁구 대회</div>
+                    </div>                    
+                    <div class = "gallery-item">
+                        <img src = "images/Opening_General_Meeting.jpg" alt = "개강총회">
+                        <div class = "caption">개강총회</div>
+                    </div>
+                    <div class = "gallery-item">
+                        <img src = "images/Pink_Campus.jpg" alt = "핑크캠퍼스">
+                        <div class = "caption">핑크캠퍼스</div>
+                    </div>
+                    <div class = "gallery-item">
+                        <img src = "images/Mid_Term.jpg" alt = "중간고사">
+                        <div class = "caption">중간고사 응원전</div>
+                    </div>
+                    <div class = "gallery-item">
+                        <img src = "images/League.jpg" alt = "리그전">
+                        <div class = "caption">스매싱 리그전</div>
+                    </div>
+                    <div class = "gallery-item">
+                        <img src = "images/Competition.jpg" alt = "재부대회">
+                        <div class = "caption">재부대회</div>
+                    </div>
+                    <div class = "gallery-item">
+                        <img src = "images/MT.jpg" alt = "MT">
+                        <div class = "caption">MT</div>
+                </div>
+                    <div class = "gallery-item empty"></div>
+                    <div class = "gallery-item empty"></div>
+                </div>
+
+                <div id = "modal" class = "modal">
+                    <span class="close" id="closeBtn">&times;</span>
+                    <img class="modal-content" id="modal-img">
+                </div>
+
+                <div class = "pagination">
+                    <button id = "prevBtn">이전</button>
+                    <span id = "pageNumbers"></span>
+                    <button id = "nextBtn">다음</button>
+                </div>
+            </section>
+        </main>
+
+
+        <footer>
+            <p>&copy; 2025 SMASHING. All rights reserved.</p>
+        </footer> 
+    </body>
+</html>
