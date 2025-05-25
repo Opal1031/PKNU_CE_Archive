@@ -7,165 +7,204 @@
 using namespace std;
 
 MusicManager::MusicManager() {
-	playlists.clear();
+    playlists.clear();
 }
 
 PlayList* MusicManager::create_playlist(string pl_name) {
-	PlayList *p = new PlayList(pl_name);
-	playlists.push_back(p);
-	return p;
+    PlayList* p = new PlayList(pl_name);
+    playlists.push_back(p);
+    return p;
 }
 
-void MusicManager::add_song(Song *song_ptr, vector<string> &playlist_names) {
-	for (auto pname : playlist_names) {
-		auto it = find_playlist(pname);
-		
-		if (it != playlists.end()) {
-			(*it) -> add_song(song_ptr);
-		}
+void MusicManager::add_song(Song* song_ptr, vector<string>& playlist_names) {
+    for (auto pname : playlist_names) {
+        auto it = find_playlist(pname);
 
-		else {
-			auto ptr = create_playlist(pname);
-			cout << "creating playlist " << ptr -> get_name() << endl;
-			ptr -> add_song(song_ptr);
-		}
-	}
+        if (it != playlists.end()) {
+            (*it) -> add_song(song_ptr);
+        }
+
+        else {
+            auto ptr = create_playlist(pname);
+            cout << "creating playlist " << ptr -> get_name() << endl;
+            ptr -> add_song(song_ptr);
+        }
+    }
 }
 
-vector<PlayList *>::iterator MusicManager::find_playlist(string pname) {
-	for (auto it = playlists.begin(); it != playlists.end(); it++)
-		if ((*it) -> get_name() == pname)
-			return it;
-	return playlists.end();
+vector<PlayList*>::iterator MusicManager::find_playlist(string pname) {
+    for (auto it = playlists.begin(); it != playlists.end(); it++)
+        if ((*it) -> get_name() == pname)
+            return it;
+    return playlists.end();
 }
 
 void MusicManager::status(ostream& out) {
-	for (auto plist : playlists) {
-		plist -> print(out);
-		out << endl;
-	}
+    for (auto plist : playlists) {
+        plist -> print(out);
+        out << endl;
+    }
 }
 
 void MusicManager::load(string filename) {
-	ifstream infile;
-	infile.open(filename);
-	string row;
+    ifstream infile;
+    infile.open(filename);
+    string row;
 
-	while (getline(infile, row)) {
-		vector<string> tokens = split_line(row, ',');
-		Song* song = new Song(tokens[0], tokens[1], tokens[2], tokens[3]);
-		vector<string> plist_names;
+    while (getline(infile, row)) {
+        vector<string> tokens = split_line(row, ',');
+        Song* song = new Song(tokens[0], tokens[1], tokens[2], tokens[3]);
+        vector<string> plist_names;
 
-		if (tokens.size() == 5) {
-			plist_names = split_line(tokens[4], ':');
-		}
-		plist_names.push_back(string("All"));
-		add_song(song, plist_names);
-	}
-	infile.close();
+        if (tokens.size() == 5) {
+            plist_names = split_line(tokens[4], ':');
+        }
+        plist_names.push_back(string("All"));
+        add_song(song, plist_names);
+    }
+    infile.close();
 }
 
 void MusicManager::list_playlist() {
-	for (auto pl : playlists)
-		cout << pl -> get_name() << ": " << pl -> size() << " songs" << endl;
+    for (auto pl : playlists)
+        cout << pl -> get_name() << ": " << pl -> size() << " songs" << endl;
 }
 
 void MusicManager::show_plist(string pname) {
-	auto it = find_playlist(pname);
-	
-	if (it != playlists.end()) {
-		(*it) -> print(cout);
-		cout << endl;
-	}
+    auto it = find_playlist(pname);
+
+    if (it != playlists.end()) {
+        (*it) -> print(cout);
+        cout << endl;
+    }
 }
 
 void MusicManager::find_song(string keyword) {
-	auto it = find_playlist(string("All"));
-	vector<Song *> ptr_songs = (*it) -> find_songs_by_keyword(keyword);
+    auto it = find_playlist(string("All"));
+    vector<Song*> ptr_songs = (*it) -> find_songs_by_keyword(keyword);
 
-	for (auto p : ptr_songs) {
-		p -> print(cout);
-		cout << endl;
-	}
+    for (auto p : ptr_songs) {
+        p -> print(cout);
+        cout << endl;
+    }
 }
 
 void MusicManager::get_and_add_song() {
-	string title, artist, album, url, plist_names, newline;
+    string title, artist, album, url, plist_names, newline;
 
-	getline(cin, newline);
-	cout << "Title: " << flush;
-	getline(cin, title);
-	cout << "Artist: " << flush;
-	getline(cin, artist);
-	cout << "Album: " << flush;
-	getline(cin, album);
-	cout << "MV url: " << flush;
-	getline(cin, url);
-	cout << "Playlist: " << flush;
-	getline(cin, plist_names);
+    getline(cin, newline);
+    cout << "Title: " << flush;
+    getline(cin, title);
+    cout << "Artist: " << flush;
+    getline(cin, artist);
+    cout << "Album: " << flush;
+    getline(cin, album);
+    cout << "MV url: " << flush;
+    getline(cin, url);
+    cout << "Playlist: " << flush;
+    getline(cin, plist_names);
 
-	Song* s_ptr = new Song(title, artist, album, url);
-	vector<string> plists = split_line(plist_names, ':');
-	add_song(s_ptr, plists);
+    Song* s_ptr = new Song(title, artist, album, url);
+    vector<string> plists = split_line(plist_names, ':');
+    add_song(s_ptr, plists);
 }
 
 void MusicManager::delete_song(int songID) {
-	auto it = find_playlist(string("All"));
-	auto song = (*it) -> find_song_by_id(songID);
+    auto it = find_playlist(string("All"));
+    auto song = (*it) -> find_song_by_id(songID);
 
-	if (song != nullptr) {
-		string title = song -> get_title();
-		delete song;
-		cout << title << " deleted." << endl;
-	}
+    if (song != nullptr) {
+        string title = song -> get_title();
+        delete song;
+        cout << title << " deleted." << endl;
+    }
 }
 
 void MusicManager::add_to_list(int sid, string pname) {
-	auto it = find_playlist(pname);
-	auto it_all = find_playlist(string("All"));
-	auto song_ptr = (*it_all) -> find_song_by_id(sid);
+    auto it = find_playlist(pname);
+    auto it_all = find_playlist(string("All"));
+    auto song_ptr = (*it_all) -> find_song_by_id(sid);
 
-	if (it != playlists.end()) {
-		(*it) -> add_song(song_ptr);
-	}
-	
-	else {
-		auto ptr = create_playlist(pname);
-		cout << "creating playlist " << ptr -> get_name() << endl;
-		ptr -> add_song(song_ptr);
-	}
+    if (it != playlists.end()) {
+        (*it) -> add_song(song_ptr);
+    }
+
+    else {
+        auto ptr = create_playlist(pname);
+        cout << "creating playlist " << ptr -> get_name() << endl;
+        ptr -> add_song(song_ptr);
+    }
 }
 
 void MusicManager::delete_from_list(int sid, string pname) {
-	if (pname == "All") {
-		cout << "Not allowd to delete song from 'All' playlist." << endl;
-		return;
-	}
+    if (pname == "All") {
+        cout << "Not allowd to delete song from 'All' playlist." << endl;
+        return;
+    }
 
-	auto it = find_playlist(pname);
-	(*it) -> delete_song_by_id(sid);
+    auto it = find_playlist(pname);
+    (*it) -> delete_song_by_id(sid);
 }
 
 void MusicManager::delete_list(string pname) {
-	if (pname == "All") {
-		cout << "Deleting 'All' not allowed." << endl;
-		return;
-	}
+    if (pname == "All") {
+        cout << "Deleting 'All' not allowed." << endl;
+        return;
+    }
 
-	auto it = find_playlist(pname);
+    auto it = find_playlist(pname);
 
-	if (it == playlists.end()) {
-		cout << "No playlist named" << pname << " exists." << endl;
-		return;
-	}
+    if (it == playlists.end()) {
+        cout << "No playlist named" << pname << " exists." << endl;
+        return;
+    }
 
-	(*it) -> clear_songs();
-	delete *it;
-	playlists.erase(it);
+    (*it) -> clear_songs();
+    delete* it;
+    playlists.erase(it);
 }
 
 void MusicManager::play(int sid) {
-	auto it = find_playlist(string("All"));
-	auto song_ptr = (*it) -> find_song_by_id(sid);
-	song_ptr -> play();
+    auto it = find_playlist(string("All"));
+    auto song_ptr = (*it) -> find_song_by_id(sid);
+    song_ptr -> play();
+}
+
+void MusicManager::save(string filename) {
+    ofstream out(filename);
+
+    if (!out.is_open()) {
+        cout << "Failed to open file for writing." << endl;
+        return;
+    }
+
+    auto it = find_playlist("All");
+    if (it == playlists.end()) {
+        cout << "All playlist not found." << endl;
+        return;
+    }
+
+    PlayList* all = *it;
+    for (auto song : all->find_songs_by_keyword("")) {
+        out << song->get_title() << "," << song->get_artist() << ","
+            << song->get_album() << "," << song->get_mv_url();
+
+        vector<string> plist_names;
+        for (auto pl : playlists) {
+            if (pl->get_name() == "All") continue;
+            if (pl->find_song_by_id(song->get_id())) {
+                plist_names.push_back(pl->get_name());
+            }
+        }
+
+        if (!plist_names.empty()) {
+            out << "," << plist_names[0];
+            for (size_t i = 1; i < plist_names.size(); ++i)
+                out << ":" << plist_names[i];
+        }
+        out << endl;
+    }
+
+    out.close();
+    cout << "Playlists saved to " << filename << endl;
 }
