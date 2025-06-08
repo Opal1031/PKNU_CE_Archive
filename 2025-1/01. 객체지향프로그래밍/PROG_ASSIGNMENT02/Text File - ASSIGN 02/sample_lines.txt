@@ -1,0 +1,6 @@
+What that           corresponding
+value   is   depends   on
+
+the   importance of the variable
+and may also depend on where
+the variable is defined. 
