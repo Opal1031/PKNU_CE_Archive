@@ -27,3 +27,13 @@ Pukyong National University Computer & AI Engineering
 |과목|언어|자료|
 |:--:|:--:|:--:|
 자료구조|C++|-
+
+## 2026 - 1
+
+<a href = "https://skillicons.dev">
+    <img src = "https://skillicons.dev/icons?i=py"/>
+</a>
+
+|과목|언어|자료|
+|:--:|:--:|:--:|
+알고리즘|Python|-
